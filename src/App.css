@@ -1,38 +1,441 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap');
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Baloo 2', cursive;
+}
+body {
+  height: 100vh;
+  background-color: rgb(211, 247, 235);
+  font-size: 12px;
+}
+
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.navbar img {
+  height: 70px;
+  width: 70px;
+  margin-right: 20px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #000000;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 25px;
+  padding: 10px 0;
+  border-bottom: 4px solid transparent;
+}
+
+.nav-link.active {
+  border-bottom: 4px solid #000000;
+}
+
+.nav-item:last-child .nav-link {
+  margin-right: 0;
+}
+
+/* code for body  */
+
+.maindiv{
+    display: flex;
+    width: 0vw;
+    height: 100vh;
+}
+
+.form-section{
+  margin-left: 120px;
+  width: 50vw;
+}
+
+
+label{
+  width: 120px;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  padding-right: 200px;
+}
+.personalinput{
+    display: flex;
+    margin-left: 10px;
+}
+.col-form-label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form header{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: blue;
+}
+
+
+.personal5 {
+  background-color: #ed0d0d; 
+  
+}
+
+.professional5{
+  background-color: #23d916; 
+}
+.social{
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: center;
+  align-items: center;
+ 
+}
+.social button {
+  background-color: #13f10b;
+  border: 1px solid #ccc;
+  color: #333;
+  padding-left:20px;
+  padding-right:20px;
+  padding: 1px;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.social button:hover {
+  background-color: #ccc;
+  color: #fff;
+}
+#connect-facebook{
+  background-color: #536bf3;
+}
+#connect-twitter{
+  background-color: #6bfa77;
+}
+#connect-instagram{
+  background-color: #f16fd1;
+}
+
+
+/* code for uploading pics  */
+.pic {
+ position: relative;
+  width: 400px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 30px;
+  margin-left: 100px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 250px;
+}
+
+.image-area {
+  position: relative;
+  width: 380px;
+  height: 100%;
+  background-color: aqua;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  overflow: hidden;
+  
+
+}
+
+.image-area img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 100;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.image-area.active:hover::before {
+  content: "Click to upload";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.image-area .icon{
+  font-size: 100px;
+}
+.image-area h3{
+  font-size: 20px;
+  font-style: 500;
+  margin-bottom: 6px;
+}
+
+
+label[for=file] {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4CAF50;
+  border-radius: 5px;
+  cursor: pointer;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+label[for=file]:hover {
+  background-color: #3e8e41;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+label[for=file]:active {
+  background-color: #1e441e;
+}
+
+
+
+.input {
+    position: relative;
+    margin-left: 700px ;
+  }
+  
+  .input label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  .file-input-container label:hover {
+    background-color: #0062cc;
+  }
+  
+  .file-input-container input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .my-filter{
+    padding: 8px 150px;
+  }
+
+ 
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mybtn{
+  background-color: #260bf1;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  animation-name: fade;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.btn-btn {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 400px;
+  margin-left: 150px;
+}
+
+.btn-btn:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  color: #fff;
+}
+
+
+
+
+/* here is stored cards section  */
+.card{
+  background-color:  #fbc1e9;
+  
+}
+
+.my-cards {
+  box-shadow: 0 0.5rem 1rem rgba(0.25, 0.25, 0.25, 0.45);
+  
+  border-radius: 1rem;
+  width: 500px;
+  height: 300px;
+  background-color: #f5d7ec;
+  position: relative;
+  transition: transform 0.2s ease-out;
+  overflow: hidden;
+  margin-left:150px; 
+  
+}
+
+.my-cards:hover {
+  transform: scale(1.05);
+}
+
+.my-cards img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  transition: transform 0.2s ease-out;
+}
+
+.my-cards:hover img {
+  transform: scale(1.1);
+}
+
+.my-cards .card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background-color:#faceed;
+  border-radius: 0 0 1rem 1rem;
+  backdrop-filter: blur(5px);
+  transition: transform 0.2s ease-out;
+}
+
+.my-cards:hover .card-body {
+  transform: translateY(-1rem);
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease-out;
+}
+
+.my-cards:hover .card-title {
+  color: #0cf442;
+}
+
+.card-text {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+  transition: color 0.2s ease-out;
+}
+
+.my-cards:hover .card-text {
+  color: #0cf442;
+}
+
+.card .text-primary{
+  color: #005cbf;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.bi {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.button-group {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 1rem;
+  margin-top: 1rem;
+  transition: transform 0.2s ease-out;
 }
 
-.App-link {
-  color: #61dafb;
+.button-group:hover {
+  transform: translateY(-0.5rem);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-dark{
+  background-color: #0cf442;
+}
+
+.btn-dark:hover{
+  background-color: #ccd81c;
+  border-color: #ccd81c;
 }
