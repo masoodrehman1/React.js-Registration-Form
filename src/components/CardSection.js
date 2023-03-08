@@ -12,7 +12,7 @@ const CardSection = ({id, deleteRecord, editRecord,myRecord   }) => {
               placeholder="Filter Contacts..."
             />
 
-            <div className="card great " id="list-container">
+            <div  className="card great " id="list-container">
               <div className="row g-0" id="project">
                 <div className="col-md-8 ps-2 py-5">
                   <h5 className="card-title">
