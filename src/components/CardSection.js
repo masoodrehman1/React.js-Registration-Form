@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "reactstrap";
 
-const CardSection = ({ id, myname, myemail, myphone, image, deleteRecord, editRecord,  gender  }) => {
+const CardSection = ({id, deleteRecord, editRecord,myRecord   }) => {
 
        
         return (
@@ -17,14 +17,14 @@ const CardSection = ({ id, myname, myemail, myphone, image, deleteRecord, editRe
                 <div className="col-md-8 ps-2 py-5">
                   <h5 className="card-title">
                     <i className="fa-regular fa-file-signature"></i>
-                    {myname}
+                    {myRecord.myname}{myRecord.name}
                   </h5>
                   <p className="card-text">
-                    <i className="fa-solid fa-envelope"></i> {myemail}
+                    <i className="fa-solid fa-envelope"></i> {myRecord.myemail}{myRecord.name}
                   </p>
                   <p className="card-text">
                     <i className="fa-solid fa-phone-volume"></i>
-                    {myphone}
+                    {myRecord.myphone}{myRecord.phone}
                   </p>
                   <div className="button-group">
                     <button onClick={()=>editRecord(id)} type="button" className="btn btn-primary">
@@ -42,11 +42,11 @@ const CardSection = ({ id, myname, myemail, myphone, image, deleteRecord, editRe
                 <div className="col-md-4 px-2 py-2 text-end">
                   <button   type="button" className="mybtn" >
                   
-                  {gender}
+                  {myRecord.gender}
                 </button>
                  
                   <img
-                    src={image}
+                    src={myRecord.image}
                     className="img-fluid rounded-start"
                     alt="..."
                   ></img>
