@@ -1,6 +1,7 @@
 import React from "react";
+import {  NavLink } from "react-router-dom";
 
-import {  Navbar, NavbarBrand, NavItem, NavLink, Nav } from 'reactstrap';
+import {  Navbar, NavbarBrand, NavItem,  Nav } from 'reactstrap';
 import myImage from '../images/mylogo1.png'
 
 function MyNavbar() {
@@ -21,26 +22,16 @@ function MyNavbar() {
         <Nav className="nav"
         >
           <NavItem>
-            <NavLink
-              active
-              href="#"
-            >
-              Home
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">
-              Contact Us
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
             
-              href="#"
-            >
-              About Us
-            </NavLink>
+             <NavLink to="/">Home</NavLink>
+            
           </NavItem>
+          <NavItem>
+            
+           <NavLink to="/inputmydata">My cards</NavLink>  
+            
+          </NavItem>
+         
         </Nav>
       </Navbar>
 

@@ -1,20 +1,33 @@
-import React, {useState, useEffect} from 'react'
+// import React, {useState, useEffect} from 'react'
+// import CardSection from './CardSection'
+// import Inputs from './inputs'
+// const FetchApi = () => {
+//     const [usersData, setUserData]= useState([])
+//     // "https://jsonplaceholder.typicode.com/users"
 
-const FetchAPI = () => {
-    const [usersData, setUserData]= useState()
+// useEffect(() => {
+//   fetch("https://jsonplaceholder.typicode.com/users")
+//   .then(response => response.json())
+//   .then(res => {setUserData(res)
+//   console.log(res)})
 
-useEffect(() => {
-  fetch("https://jsonplaceholder.typicode.com/users")
-  .then(response=> response.json())
-  .then(res => setUserData(res) )
-}, );
+  
+// }, [])
 
 
-  return (
-    <div>
+//   return (
+//     <div>
+//     {usersData.map((apiData)=>{
+//       // const {id} = apiData
+//       return  
+//       (
       
-    </div>
-  )
-}
+//       <CardSection
+//       key={apiData}
+     
+//       usersData = {apiData} />)}) }   
+//     </div>
+//   )
+// }
 
-export default FetchAPI
+// export default FetchApi

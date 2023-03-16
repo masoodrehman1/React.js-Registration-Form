@@ -27,13 +27,3 @@ const SocialButton = () => {
 
 export default SocialButton
 
-
-// {usersData && usersData.map((record) => {
-//   console.log("record ", record)
-//  const { id, myname, email, myphone, image, gender, } = record;
-//  return (
-//    <CardSection
-//      key={record.id}
-//      usersData={record}
-// /> );
-// })}
