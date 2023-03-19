@@ -1,21 +1,24 @@
-import logo from './logo.svg';
-import  ReactDOM  from 'react-dom';
-// import './App.css';
-
-// import Body from './components/body'
-
-import Inputs from './components/inputs';
-
-
+import { AppContextProvider } from './components/inputs';
+import MyForm from './components/MyForm';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CardSection from './components/CardSection';
+import MyNavbar from "./components/navbar";
+import FetchApi from './components/FetchApi';
 function App() {
 
 
 
   return (
-    <div>
-     <Inputs/>
-     
-     </div>
+    <BrowserRouter>
+    <AppContextProvider>
+    <MyNavbar />
+    <FetchApi />
+    <Routes>
+      <Route path="/" element={<MyForm/>}/>
+      <Route path='/cards' element={<CardSection/>}/>
+      </Routes> 
+      </AppContextProvider>
+     </BrowserRouter>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import {  Navbar, NavbarBrand, NavItem, NavLink, Nav } from 'reactstrap';
 import myImage from '../images/mylogo1.png'
 
@@ -25,12 +25,12 @@ function MyNavbar() {
               active
               href="#"
             >
-              Home
+             <Link to="/">Home</Link>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="#">
-              Contact Us
+              <Link to="cards">MyCards</Link>
             </NavLink>
           </NavItem>
           <NavItem>
