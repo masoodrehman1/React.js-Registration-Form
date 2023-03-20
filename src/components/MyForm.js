@@ -13,7 +13,7 @@ const MyForm = () => {
   return (
     <div className="form">
       
-    <div className='maindiv' >  <Form className="form-section" onSubmit={(event)=>submitForm(event)} >
+    <div className='maindiv' > <Form className="form-section" onSubmit={(event)=>submitForm(event)} >
     <FormGroup row>
       <Label for="name" sm={2}>
         Name
