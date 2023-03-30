@@ -1,44 +1,62 @@
-import React, { useState, createContext  } from "react";
+import React, { createContext, useReducer  } from "react";
 
 import "../App.css";
-// import CardSection from "./CardSection";
-// import MyForm from "./MyForm";
 
+const initialState= {
+  formData:[],
+  editMyData:"",
+  submitButtonText:"Submit",
+  userInputs:{
+    name:"",
+    email:"",
+    phone:"",
+    personality:"",
+    image:""
+  }
+}
+
+const reducer=(state, action)=>{
+switch(action.type){
+  case "user_input":
+    return{...state, userInputs:action.payload}
+  case "submit_Text":
+    return{...state, submitButtonText: action.payload}
+  case   "form_data":
+    return{...state, formData: action.payload }
+  case "edi_users_data":
+    return{...state, editMyData: action.payload} 
+    default:
+      return state 
+}
+}
  const AppContext = createContext();
   const AppContextProvider = ({children}) => {
-  const [formData, setFormData] = useState([])
-  const [editMyData, setEditMyData] = useState(null)
-  const [submitButtonText, setsubmitButtonText] = useState("Submit")
-const [userInputs, setUserInputs] = useState({
-  name:"",
-  email:"",
-  phone:"",
-personality:"",
-image: null
-})
+  const [state, dispatch]= useReducer(reducer, initialState)
+
 const controlInput=({target})=>{
  
-  setUserInputs({...userInputs, [target.name]: target.type==="file" ? URL.createObjectURL(target.files[0]):target.value})
+  dispatch({type:"user_input", payload: {...state.userInputs, [target.name]: target.type==="file" ? URL.createObjectURL(target.files[0]):target.value}})
 }
 
 const submitForm =(event)=>{
   event.preventDefault();
-  if(editMyData===null){
-    setsubmitButtonText("Submit")
-  const newData = {...userInputs, id: formData.length}
-setFormData([...formData, newData])
+  if(state.editMyData===null){
+    dispatch({type:"submit_Text", payload:"Submit"})
+  const newData = {...state.userInputs, id: state.formData.length}
+dispatch({type: "form_data", payload:[...state.formData, newData]})
 
 }else{
-  const myEditedData= formData.map((record)=> record.id===editMyData ? {...userInputs, id:editMyData}:record)
-setFormData(myEditedData)
+  const myEditedData= state.formData.map((record)=> record.id===state.editMyData ? {...state.userInputs, id:state.editMyData}:record)
+dispatch({type:"form_data", payload: myEditedData})
 
 }
-setUserInputs({
+dispatch({type:"user_input",
+payload:{
   myname: "",
   myemail:"",
   myphone:"",
   radio2:"",
-  image:null,
+  image:null,}
 })
 document.getElementById("myImages").value=null
 }
@@ -46,21 +64,21 @@ document.getElementById("myImages").value=null
  
   
 const editUserInputs=(id)=>{
-  setEditMyData(id)
-  setsubmitButtonText("Edit")
+  dispatch({type:"edi_users_data", payload:id})
+  dispatch({type:"submit_Text", payload: "Edit"})
   
- const editedData= formData.find((record)=> record.id===id)
- setUserInputs(editedData)
+ const editedData= state.formData.find((record)=> record.id===id)
+ dispatch({type:"user_input", payload:editedData})
 }
 const deleteRecord=(id)=>{
   if (window.confirm("Are you sure to delete record")){
-  const deleteData= formData.filter((record)=> record.id !==id )
-  setFormData(deleteData)}
+  const deleteData= state.formData.filter((record)=> record.id !==id )
+  dispatch({type:"form_data",payload:deleteData})}
 }
 
 
   return (
-    <AppContext.Provider value={{submitButtonText,deleteRecord,controlInput,submitForm,userInputs, editUserInputs, formData,setFormData}}>
+    <AppContext.Provider value={{submitButtonText:state.submitButtonText,deleteRecord,controlInput,submitForm,userInputs:state.userInputs, editUserInputs, formData:state.formData,dispatch}}>
   <div >
   {children}
        

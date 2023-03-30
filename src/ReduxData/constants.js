@@ -1,0 +1,5 @@
+export const Control_Inputs="Control_Inputs"
+export const Submit_Form="Submit_Form"
+export const Delete_Data="Delete_Data"
+export const Edit_Data="Edit_Data"
+export const fetch_API="fetch_API"

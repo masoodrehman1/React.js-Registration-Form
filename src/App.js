@@ -1,23 +1,27 @@
-import { AppContextProvider } from './components/inputs';
+
 import MyForm from './components/MyForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CardSection from './components/CardSection';
 import MyNavbar from "./components/navbar";
-import FetchApi from './components/FetchApi';
+import AllApiData from './components/AllApiData';
+// import UserDetails from './components/UserDetails';
+import {Provider} from "react-redux"
+import { Store } from './components/store';
 function App() {
 
 
 
   return (
-    <BrowserRouter>
-    <AppContextProvider>
+    <BrowserRouter> 
+    <Provider store={Store}>
     <MyNavbar />
-    <FetchApi />
+    <AllApiData />
     <Routes>
       <Route path="/" element={<MyForm/>}/>
-      <Route path='/cards' element={<CardSection/>}/>
+       <Route path='/cards/' element={<CardSection/>}/>
+      {/* <Route path='/user/:id' element={<UserDetails/>}/>  */}
       </Routes> 
-      </AppContextProvider>
+      </Provider>
      </BrowserRouter>
   );
 }

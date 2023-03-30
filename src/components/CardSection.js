@@ -1,22 +1,26 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Input } from "reactstrap";
-import { AppContext } from "./inputs";
+// import { AppContext } from "./inputs";
+import { Link } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { deleteData, editData } from "../ReduxData/actions/Actions";
+
 
 const CardSection = () => {
-  const { formData, editUserInputs, deleteRecord } = useContext(AppContext);
-  
-  const handleEdit = (id) => {
-    editUserInputs(id);
-  };
-  const handleDelete = (id) => {
-    deleteRecord(id);
-  };
+ 
+  const dispatch= useDispatch()
+  const handleDeleteData=(id)=>{
+    dispatch(deleteData(id))
+  }
+  const handleEdit=(id)=>{ dispatch(editData(id))}
+  const myData= useSelector(state=> state.controllReducers.formData)
+  console.log(myData)
   return (
     <>
       
       <div>
       
-        {formData.map((record) => {
+        {myData.map((record) => {
           return (
             <div key={record.id} className="my-cards">
               <Input
@@ -25,6 +29,7 @@ const CardSection = () => {
                 placeholder="Filter Contacts..."
               />
 
+             {/* <Link to={`/user/${record.id}`}> */}
               <div className="card great " id="list-container">
                 <div className="row g-0" id="project">
                   <div className="col-md-8 ps-2 py-5">
@@ -47,7 +52,7 @@ const CardSection = () => {
                         Edit
                       </button>
                       <button
-                        onClick={() => handleDelete(record.id)}
+                        onClick={() => handleDeleteData(record.id)}
                         type="button"
                         className="btn btn-danger"
                       >
@@ -57,7 +62,7 @@ const CardSection = () => {
                   </div>
                   <div className="col-md-4 px-2 py-2 text-end">
                     <button type="button" className="mybtn">
-                      {record.radio2}
+                      {record.personality}
                     </button>
 
                     <img
@@ -68,6 +73,7 @@ const CardSection = () => {
                   </div>
                 </div>
               </div>
+              {/* </Link> */}
             </div>
           );
         }

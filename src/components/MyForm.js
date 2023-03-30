@@ -1,31 +1,41 @@
-import React , { useContext} from 'react'
+import React  from 'react'
 import SocialButton from "./SocialButton";
 import { Form, Label, Col, FormGroup, Input, Button } from "reactstrap";
-import { AppContext } from './inputs';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { controlInputs, submitForm } from '../ReduxData/actions/Actions';
 import "../App.css";
 
 
 
-const MyForm = () => {
-    const {userInputs, controlInput, submitForm, submitButtonText} = useContext(AppContext)
+const MyForm = (props) => {
+  const dispatch= useDispatch()
+    const usersInputs= useSelector((state)=>state.controllReducers.usersInputs)
+    console.log("usersInputs", usersInputs)
+
+  const controlInputsHandler = (event)=>{dispatch(controlInputs({event}))
+    console.log("event", event);}
   
+  const handlesubmitForm=(event)=>{
+    event.preventDefault();
     
+    dispatch(submitForm({usersInputs}))}  
   return (
     <div className="form">
       
-    <div className='maindiv' >  <Form className="form-section" onSubmit={(event)=>submitForm(event)} >
+    <div className='maindiv' >  <Form className="form-section" onSubmit={(event)=>handlesubmitForm(event)} >
     <FormGroup row>
       <Label for="name" sm={2}>
         Name
       </Label>
       <Col sm={10}>
         <Input
-          onChange={controlInput}
+          onChange={controlInputsHandler}
           id="name"
           name="name"
           placeholder="Type Your Name"
           type="text"
-          value={userInputs.name}
+          value={usersInputs.name}
         />
       </Col>
     </FormGroup>
@@ -36,12 +46,12 @@ const MyForm = () => {
       </Label>
       <Col sm={10}>
         <Input
-          onChange={controlInput}
+          onChange={controlInputsHandler}
           id="email"
           name="email"
           type="text"
           placeholder="Type Your email"
-          value= {userInputs.email}
+          value= {usersInputs.email}
         />
       </Col>
     </FormGroup>
@@ -52,12 +62,12 @@ const MyForm = () => {
       </Label>
       <Col sm={10}>
         <Input
-          onChange={controlInput}
+          onChange={controlInputsHandler}
           className=""
           id="phone"
           name="phone"
           type="text"
-          value={userInputs.phone}
+          value={usersInputs.phone}
           placeholder="Type Your Phone Number"
         />
       </Col>
@@ -65,9 +75,9 @@ const MyForm = () => {
     <FormGroup>
       <div className="pic">
         <div className="image-area active" id="preview" data-img="">
-          {userInputs && (<img
+          {usersInputs && (<img
 
-            src={userInputs?.image || ''}
+            src={usersInputs.image }
             name="myimage"
             className=" rounded-start"
             id="output"
@@ -83,17 +93,17 @@ const MyForm = () => {
     <FormGroup>
       <Label for="exampleFile">File</Label>
       <Input id="myImages" name="image" type="file" accept="image/*"
-        onChange={(event)=>controlInput(event)} />
+        onChange={(event)=>controlInputsHandler(event)} />
     </FormGroup>
     <FormGroup row tag="fieldset">
       <legend className="col-form-label col-sm-2">Personality</legend>
       <Col className="personalinput" sm={10}>
         <FormGroup check>
-          <Input onChange={(event)=>controlInput(event)} value="personal" checked={userInputs.personality === "personal"} name="radio2" type="radio" />{" "}
+          <Input onChange={(event)=>controlInputsHandler(event)} value="personal" checked={usersInputs && usersInputs.personality === "personal"} name="radio2" type="radio" />{" "}
           <Label for='personal'>Personal</Label>
         </FormGroup>
         <FormGroup check>
-          <Input onChange={(event)=>controlInput(event)} value="professional" checked={userInputs.personality === "professional"} name="radio2" type="radio" />{" "}
+          <Input onChange={(event)=>controlInputsHandler(event)} value="professional" checked={usersInputs && usersInputs.personality === "professional"} name="radio2" type="radio" />{" "}
           <Label for='professional' >Professional</Label>
         </FormGroup>
       </Col>
@@ -106,7 +116,7 @@ const MyForm = () => {
           size: 10,
         }}
       >
-        <Button  type="submit" id='submit'>{submitButtonText}</Button>
+        <Button  type="submit" id='submit'>submit</Button>
       </Col>
     </FormGroup>
     <div className="social">
