@@ -3,7 +3,7 @@ import { Input } from "reactstrap";
 // import { AppContext } from "./inputs";
 import { Link } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
-import { deleteData, editData } from "../ReduxData/actions/Actions";
+import { deleteData,editData } from "../ReduxData/Reducers/Reducer1";
 
 
 const CardSection = () => {
@@ -13,7 +13,7 @@ const CardSection = () => {
     dispatch(deleteData(id))
   }
   const handleEdit=(id)=>{ dispatch(editData(id))}
-  const myData= useSelector(state=> state.controllReducers.formData)
+  const myData= useSelector(state=> state.users.formData)
   console.log(myData)
   return (
     <>

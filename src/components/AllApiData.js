@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import {  useDispatch } from 'react-redux';
 import { FetchApi } from './FetchApi';
-import { fetchApiData } from '../ReduxData/actions/Actions';
+import { fetchApiUsers } from '../ReduxData/Reducers/Reducer1';
 
 const AllApiData = () => {
     const dispatch= useDispatch()
     useEffect(() => {
-        FetchApi().then((data)=>dispatch(fetchApiData(data))) 
+        FetchApi().then((data)=>dispatch(fetchApiUsers(data))) 
             }, [])
 
 

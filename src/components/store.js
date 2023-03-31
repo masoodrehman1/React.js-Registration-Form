@@ -1,8 +1,13 @@
-import {createStore, applyMiddleware} from "redux"
-import AllReducers from "../ReduxData/Reducers/index"
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
+import { formSlice } from '../ReduxData/Reducers/Reducer1';
 import thunk from "redux-thunk";
 
 
 
 
-export const Store =createStore(AllReducers, applyMiddleware(thunk)+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+export const Store =configureStore({
+    reducer:{
+        users: formSlice.reducer,
+        middleware: [thunk]
+    }
+}, )

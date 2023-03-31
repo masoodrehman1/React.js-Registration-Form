@@ -2,18 +2,22 @@ import React  from 'react'
 import SocialButton from "./SocialButton";
 import { Form, Label, Col, FormGroup, Input, Button } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux';
+import { submitForm,controlInput } from '../ReduxData/Reducers/Reducer1';
 
-import { controlInputs, submitForm } from '../ReduxData/actions/Actions';
+
 import "../App.css";
 
 
 
-const MyForm = (props) => {
+const MyForm = () => {
   const dispatch= useDispatch()
-    const usersInputs= useSelector((state)=>state.controllReducers.usersInputs)
+    const usersInputs= useSelector((state)=>state.users.usersInputs)
     console.log("usersInputs", usersInputs)
 
-  const controlInputsHandler = (event)=>{dispatch(controlInputs({event}))
+  const controlInputsHandler = (event)=>{
+   
+    const { name, value, type, files } = event.target;
+    dispatch(controlInput({ name, value, type, files }));
     console.log("event", event);}
   
   const handlesubmitForm=(event)=>{
@@ -99,11 +103,11 @@ const MyForm = (props) => {
       <legend className="col-form-label col-sm-2">Personality</legend>
       <Col className="personalinput" sm={10}>
         <FormGroup check>
-          <Input onChange={(event)=>controlInputsHandler(event)} value="personal" checked={usersInputs && usersInputs.personality === "personal"} name="radio2" type="radio" />{" "}
+          <Input onChange={(event)=>controlInputsHandler(event)} value="personal" checked={usersInputs && usersInputs.personality === "personal"} name="personality" type="radio" />{" "}
           <Label for='personal'>Personal</Label>
         </FormGroup>
         <FormGroup check>
-          <Input onChange={(event)=>controlInputsHandler(event)} value="professional" checked={usersInputs && usersInputs.personality === "professional"} name="radio2" type="radio" />{" "}
+          <Input onChange={(event)=>controlInputsHandler(event)} value="professional" checked={usersInputs && usersInputs.personality === "professional"} name="personality" type="radio" />{" "}
           <Label for='professional' >Professional</Label>
         </FormGroup>
       </Col>

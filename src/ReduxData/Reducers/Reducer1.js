@@ -1,5 +1,5 @@
-import { Control_Inputs, Submit_Form, Delete_Data, Edit_Data,fetch_API } from "../constants";
 import { v4 as uuidv4 } from 'uuid';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   formData: [],
@@ -14,19 +14,23 @@ const initialState = {
   },
 };
 
-export const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case Control_Inputs:
-      const { name, value, type, files } = action.payload.event.target;
-      const newValue = type === "file" ? URL.createObjectURL(files[0]) : value;
+export const formSlice = createSlice({
+  name:"form",
+  initialState,
+  reducers:{
+    controlInput:(state, action) => {
+  
+      const { name, value, type, files } = action.payload
+      const newValue = type === "file" ? URL.createObjectURL(files[0]):type==="radio" ?action.payload: value;
       return {
         ...state,
         usersInputs: {
           ...state.usersInputs,
-          [name]: newValue
+          [name]:name==="personality"?value: newValue
         }
-      };
-    case Submit_Form:
+      };},
+      
+    submitForm:(state, action)=>{
       const { usersInputs } = action.payload;
       const { editMyData } = state;
 
@@ -47,28 +51,23 @@ export const reducer = (state = initialState, action) => {
           personality: "",
         },
         editMyData: null,
-      };
-    case Delete_Data:
+      };},
+    deleteData:(state, action)=>{
       const newUserList = state.formData.filter(record => record.id !== action.payload)
       return {
         ...state,
         formData: newUserList
-      };
-    case Edit_Data:
+      };},
+    editData:(state, action)=>{
       const editedId = action.payload;
       const editedData = state.formData.find(record => record.id === editedId);
-      return {
-        ...state,
+      return({...state,
         editMyData: editedId,
-        usersInputs: editedData
-      };
-      case fetch_API:
-      return{
-        ...state,
-        formData:action.payload
+        usersInputs: editedData}
+)},
+      fetchApiUsers:(state, action)=>{
+        state.formData=action.payload
       }  
-        
-    default:
-      return state;
-  }
-};
+    }})
+    export const {submitForm,controlInput,deleteData,editData,fetchApiUsers}=formSlice.actions
+    export default formSlice.reducer
