@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/reactregistrationform/static/css/main.6e852019.css",
+    "main.js": "/reactregistrationform/static/js/main.93b832c8.js",
+    "static/js/787.28cb0dcd.chunk.js": "/reactregistrationform/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logo.svg": "/reactregistrationform/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/reactregistrationform/index.html",
+    "main.6e852019.css.map": "/reactregistrationform/static/css/main.6e852019.css.map",
+    "main.93b832c8.js.map": "/reactregistrationform/static/js/main.93b832c8.js.map",
+    "787.28cb0dcd.chunk.js.map": "/reactregistrationform/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e852019.css",
+    "static/js/main.93b832c8.js"
+  ]
+}
