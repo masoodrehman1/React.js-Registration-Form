@@ -17,8 +17,9 @@ const MyForm = () => {
   const controlInputsHandler = (event)=>{
    
     const { name, value, type, files } = event.target;
-    dispatch(controlInput({ name, value, type, files }));
-    console.log("event", event);}
+    if(value){ dispatch(controlInput({ name, value, type, files }))}
+   ;
+    }
   
   const handlesubmitForm=(event)=>{
     event.preventDefault();

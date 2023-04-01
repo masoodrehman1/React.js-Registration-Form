@@ -67,7 +67,8 @@ export const formSlice = createSlice({
 )},
       fetchApiUsers:(state, action)=>{
         state.formData=action.payload
-      }  
+      },  
+      
     }})
     export const {submitForm,controlInput,deleteData,editData,fetchApiUsers}=formSlice.actions
     export default formSlice.reducer

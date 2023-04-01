@@ -1,6 +1,5 @@
 import React from "react";
 import { Input } from "reactstrap";
-// import { AppContext } from "./inputs";
 import { Link } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { deleteData,editData } from "../ReduxData/Reducers/Reducer1";
@@ -9,10 +8,13 @@ import { deleteData,editData } from "../ReduxData/Reducers/Reducer1";
 const CardSection = () => {
  
   const dispatch= useDispatch()
-  const handleDeleteData=(id)=>{
+  const handleDeleteData=(event,id)=>{
+    event.preventDefault()
     dispatch(deleteData(id))
   }
-  const handleEdit=(id)=>{ dispatch(editData(id))}
+  const handleEdit=(event,id)=>{
+    event.preventDefault()
+    dispatch(editData(id))}
   const myData= useSelector(state=> state.users.formData)
   console.log(myData)
   return (
@@ -29,7 +31,7 @@ const CardSection = () => {
                 placeholder="Filter Contacts..."
               />
 
-             {/* <Link to={`/user/${record.id}`}> */}
+             <Link to={`/user/${record.id}`}>
               <div className="card great " id="list-container">
                 <div className="row g-0" id="project">
                   <div className="col-md-8 ps-2 py-5">
@@ -47,12 +49,12 @@ const CardSection = () => {
                       <button
                         type="button"
                         className="btn btn-primary"
-                        onClick={() => handleEdit(record.id)}
+                        onClick={(event) => handleEdit(event,record.id)}
                       >
                         Edit
                       </button>
                       <button
-                        onClick={() => handleDeleteData(record.id)}
+                        onClick={(event) => handleDeleteData(event,record.id)}
                         type="button"
                         className="btn btn-danger"
                       >
@@ -73,7 +75,7 @@ const CardSection = () => {
                   </div>
                 </div>
               </div>
-              {/* </Link> */}
+              </Link>
             </div>
           );
         }

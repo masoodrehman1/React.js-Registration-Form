@@ -1,12 +1,20 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import { AppContext } from "./inputs";
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteData, editData } from '../ReduxData/Reducers/Reducer1'
 
 
 const UserDetails = () => {
-   const {formData,handleDelete,handleEdit}= useContext(AppContext)
+  const dispatch= useDispatch()
+   const formData= useSelector((state)=>state.users.formData)
    const{id}= useParams()
    const users = formData.find((users)=>users.id===parseInt(id))
+   const handleEdit=(id)=>{
+    dispatch(editData(id))
+   }
+   const handleDelete=(id)=>{
+    dispatch(deleteData(id))
+   }
   
   return (
     <div>
