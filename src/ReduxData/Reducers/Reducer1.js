@@ -1,10 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 import { createSlice } from "@reduxjs/toolkit";
+import { FetchApi } from '../../components/FetchApi';
+import { useDispatch } from 'react-redux';
 
 const initialState = {
   formData: [],
   editMyData: null,
   submitButtonText: "Submit",
+  apiUser:[],
   usersInputs: {
     name: "",
     email: "",
@@ -33,16 +36,19 @@ export const formSlice = createSlice({
     submitForm:(state, action)=>{
       const { usersInputs } = action.payload;
       const { editMyData } = state;
-
+     
       const updatedData = editMyData !== null
         ? state.formData.map(record =>
             record.id === editMyData ? { ...record, ...state.usersInputs } : record
           )
         : [...state.formData, { ...usersInputs, id: uuidv4() }];
-
+        FetchApi.postUsers(usersInputs).then(response => {
+          console.log(response);
+        });
       return {
         ...state,
         formData: updatedData,
+        apiUser:usersInputs,
         usersInputs: {
           name: "",
           email: "",
@@ -51,6 +57,7 @@ export const formSlice = createSlice({
           personality: "",
         },
         editMyData: null,
+        
       };},
     deleteData:(state, action)=>{
       const newUserList = state.formData.filter(record => record.id !== action.payload)
@@ -67,8 +74,11 @@ export const formSlice = createSlice({
 )},
       fetchApiUsers:(state, action)=>{
         state.formData=action.payload
-      },  
+      }, 
+      clearApiUser: (state) => {
+        state.apiUser = [];
+      }, 
       
     }})
-    export const {submitForm,controlInput,deleteData,editData,fetchApiUsers}=formSlice.actions
+    export const {submitForm,controlInput,deleteData,editData,fetchApiUsers,clearApiUser}=formSlice.actions
     export default formSlice.reducer

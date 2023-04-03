@@ -3,6 +3,7 @@ import { Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { deleteData,editData } from "../ReduxData/Reducers/Reducer1";
+import { FetchApi } from "./FetchApi";
 
 
 const CardSection = () => {
@@ -11,6 +12,7 @@ const CardSection = () => {
   const handleDeleteData=(event,id)=>{
     event.preventDefault()
     dispatch(deleteData(id))
+    
   }
   const handleEdit=(event,id)=>{
     event.preventDefault()
