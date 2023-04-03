@@ -111,27 +111,26 @@ app.listen(8080, "127.0.0.1", () => {
 
 
 
-// else if(req.method==="DELETE" && req.url.startsWith("/usersApi/")){
-//   let id= parseInt(req.url.split("/")[2])
-//   fs.readFile(`${__dirname}/usersData.json`, "utf-8",(err, data)=>{
-//     if(err){
-//       res.writeHead(404,{"COntent-Type":"text/html"})
-//       res.end("error founded")
-//     }else{
-//       const duser=JSON.parse(data)
-//       const deluser=duser.find(data=>data.id===id)
-//       if(deluser){
-//         const deleteuser=duser.filter(data=>data.id!==id)
-//       fs.writeFile(`${__dirname}/usersData.json`,JSON.stringify(deleteuser),(err)=>{
-//        if(err){ res.writeHead(500, { "Content-Type": "text/html" });
-//         res.end("Internal Server Error");}else{
-//           res.writeHead(200, { "Content-Type": "application/json" });
-//           res.end(JSON.stringify(deleteuser));
-//         }
-//       }
-//       )
-//       }
-      
-//     }
-//   })
-// }
+app.delete(("/usersApi/"),(req, res)=>{
+  let id= parseInt(req.url.split("/")[2])
+fs.readFile(`${__dirname}/usersData.json`, "utf-8",(err, data)=>{
+  if(err){
+    res.status(404).send("Page not found")
+  }else{
+    const duser=JSON.parse(data)
+    const deluser=duser.find(data=>data.id===id)
+    if(deluser){
+      const deleteuser=duser.filter(data=>data.id!==id)
+    fs.writeFile(`${__dirname}/usersData.json`,JSON.stringify(deleteuser),(err)=>{
+     if(err){ res.status(404).send("Page not found");}
+     else{
+        res.status(200).json(deleteuser);
+       
+      }
+    }
+    )
+    }
+    
+  }
+})})
+  
