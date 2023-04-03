@@ -70,7 +70,8 @@ const app = express()
       let data="";
       req.on("data", (chunk)=>{
         data+=chunk
-      })
+      })  
+      
       req.on("end",()=>{
         const newUpdateData=JSON.parse(data)
         fs.readFile(`${__dirname}/usersData.json`,"utf-8" ,(err, dataToUpdate)=>{
